@@ -1,0 +1,18 @@
+
+<div>
+  <div [hidden]="editing">
+    {{text}} <button (click)="edit(text)" class="glyphicon glyphicon-pencil"></button>
+  </div>
+
+  <form  #inlineEditForm="ngForm" class="inlineEditForm form-inline" (ngSubmit)="onSubmit(text)" [hidden]="!editing">
+    <div class="form-group">
+      <input *ngIf="type === 'text'" #inlineEditControl [focus]="inputFocused" (blur)="editing = false" name="editText" class="form-control" [(ngModel)]="text"/>
+      <textarea *ngIf="type === 'textarea'" #inlineEditControl [focus]="inputFocused" (blur)="editing = false" name="textArea" class="form-control" [(ngModel)]="text"></textarea>
+      <span>
+        <button type="submit" class="btn btn-primary" (click)="editing = false;"><span class="glyphicon glyphicon-ok"></span></button>
+        <button class="btn btn-default" (click)="cancel(text)"><span class="glyphicon glyphicon-remove"></span></button>
+      </span>
+    </div>
+  </form>
+
+</div>
