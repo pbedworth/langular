@@ -3,10 +3,8 @@ package com.cheekyeye.langular.routes
 import akka.http.scaladsl.server.Directives
 import akka.http.scaladsl.server.directives.{AuthenticationDirective, Credentials}
 import akka.http.scaladsl.server.directives.Credentials.Missing
-import com.cheekyeye.langular.domain.{Session, User}
+import com.cheekyeye.langular.domain.User
 import com.cheekyeye.langular.services.UserService
-
-import scala.util.DynamicVariable
 
 object Auth extends Directives {
   private def Realm = "Langular"

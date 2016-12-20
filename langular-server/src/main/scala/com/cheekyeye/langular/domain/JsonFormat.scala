@@ -1,16 +1,10 @@
 package com.cheekyeye.langular.domain
 
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
-import spray.json.DefaultJsonProtocol
+import spray.json.{DefaultJsonProtocol, RootJsonFormat}
 
 trait JsonFormat extends SprayJsonSupport with DefaultJsonProtocol {
-  implicit val textFormat = jsonFormat3(Text)
-  implicit val textsFormat = jsonFormat1(Texts)
-
-  implicit val userFormat = jsonFormat3(User)
-
-  implicit val loginRequestFormat = jsonFormat2(LoginRequest)
-  implicit val loginResponseFormat = jsonFormat1(LoginResponse)
-
-  implicit val sessionFormat = jsonFormat3(Session)
+  implicit val textFormat: RootJsonFormat[Text] = jsonFormat3(Text)
+  implicit val textsFormat: RootJsonFormat[Texts] = jsonFormat1(Texts)
+  implicit val userFormat: RootJsonFormat[User] = jsonFormat3(User)
 }
