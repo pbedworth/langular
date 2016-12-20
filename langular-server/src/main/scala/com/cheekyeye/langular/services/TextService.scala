@@ -83,9 +83,10 @@ object TextService extends Service with DynamoStore with S3Store {
 
   def deleteText(userId: UUID, textId: UUID): Unit =
     getBucket(BucketName).foreach(bucket => {
-      val table = getTable(TableName).get
-      table.delete(textId.toString)
-      bucket.delete(s"$textId-text.json")
+      getTable(TableName).foreach({ table =>
+        table.delete(textId.toString)
+        bucket.delete(s"$textId-text.json")
+      })
     })
 
 }
