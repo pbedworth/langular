@@ -1,15 +1,15 @@
 package com.cheekyeye.langular.routes
 
+import java.util.UUID
+
 import akka.Done
-import akka.http.scaladsl.server.{Directives, Route}
-import com.cheekyeye.langular.domain.{JsonFormat, User}
+import akka.http.scaladsl.server.Route
+import com.cheekyeye.langular.domain.User
 import com.cheekyeye.langular.services.UserService
 
-import scala.concurrent.Future
+trait UserRoute extends Routing {
 
-trait UserRoute extends Directives with JsonFormat {
-
-  def userRoute: Route =
+  def userRoute(currentUserId: UUID): Route =
     pathPrefix("user") {
       pathEnd {
         post {

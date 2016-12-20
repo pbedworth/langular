@@ -7,4 +7,7 @@ import scala.concurrent.ExecutionContext
 
 trait Service extends JsonFormat with LazyLogging {
   implicit val executionContext: ExecutionContext = ExecutionContext.global
+
+  def initSchema()
+  def destroySchema()
 }
